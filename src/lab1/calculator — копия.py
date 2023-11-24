@@ -44,12 +44,6 @@ def solve(math_str):
             print('Incorrect expression!')
             return
     if current_step:
-        if current_step[0] == '.' or current_step[-1] == '.':
-            print('Incorrect expression!')
-            return
-        if current_step.count('.') > 1:
-            print('Incorrect expression!')
-            return
         num.append(MathClass(float(current_step), ind))
 
     for step in priority_steps:
@@ -86,18 +80,17 @@ def solve(math_str):
             num[elem2.index].obj = elem1.obj + elem2.obj
             num[elem1.index].obj = SPECIAL_MARK
         if step.obj == '-':
-            num[elem2.index].obj = elem1.obj - elem2.obj
+            num[elem2.index].obj = elem1.obj * elem2.obj
             num[elem1.index].obj = SPECIAL_MARK
     return num[-1].obj
 
 
-if __name__ == '__main__':
-    while True:
-        problem = str(input())
-        s = solve(problem)
-        if s is None:
-            pass
-        elif s == int(s):
-            print(int(s))
-        else:
-            print(s)
+while True:
+    problem = str(input())
+    s = solve(problem)
+    if s == None:
+        pass
+    elif s == int(s):
+        print(int(s))
+    else:
+        print(s)
