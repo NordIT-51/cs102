@@ -1,7 +1,11 @@
 import unittest
 
-class CalculatorTestCase(unittest.TestCase):
+from src.lab1.calculator import solve
 
-    # Тест для проверки работы, можно удалить
+
+class CalculatorTestCase(unittest.TestCase):
     def test_one(self):
-        self.assertEquals(1, 1)
+        self.assertEqual(solve('5+5'), 10)
+        self.assertEqual(solve('5/2.0'), 2.5)
+        self.assertEqual(solve('51.2+44.5/5.0'), 60.1)
+        self.assertEqual(solve('2+2*2'), 6)
