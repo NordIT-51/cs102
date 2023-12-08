@@ -7,9 +7,22 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'python'
     >>> encrypt_vigenere("ATTACKATDAWN", "LEMON")
     'LXFOPVEFRNHR'
+    >>> encrypt_vigenere("Python3", "a") #Добавил тест на работу с числами и регистром
+    'Python3'
     """
     ciphertext = ""
-    # PUT YOUR CODE HERE
+    keyword = keyword.upper()
+    key = 0
+    for char in plaintext:
+        if char.isalpha():
+            shift = ord(keyword[key]) - 65
+            if char.isupper():
+                ciphertext += chr((ord(char) + shift - 65) % 26 + 65)
+            else:
+                ciphertext += chr((ord(char) + shift - 97) % 26 + 97)
+            key = (key + 1) % len(keyword)
+        else:
+            ciphertext += char
     return ciphertext
 
 
@@ -22,7 +35,20 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     'python'
     >>> decrypt_vigenere("LXFOPVEFRNHR", "LEMON")
     'ATTACKATDAWN'
+    >>> encrypt_vigenere("Python3", "a") #Добавил ещё один тест на работу с числами и регистром
+    'Python3'
     """
     plaintext = ""
-    # PUT YOUR CODE HERE
+    keyword = keyword.upper()
+    key = 0
+    for char in ciphertext:
+        if char.isalpha():
+            shift = ord(keyword[key]) - 65
+            if char.isupper():
+                plaintext += chr((ord(char) - shift - 65) % 26 + 65)
+            else:
+                plaintext += chr((ord(char) - shift - 97) % 26 + 97)
+            key = (key + 1) % len(keyword)
+        else:
+            plaintext += char
     return plaintext

@@ -13,8 +13,6 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     ciphertext = ""
     for letter in plaintext:
         if letter.isalpha():
-            # определяем, на сколько символов нужно сдвинуть букву
-            # и используем оператор % для того, чтобы вернуться к началу алфавита
             if letter.isupper():
                 new = chr((ord(letter) + shift - 65) % 26 + 65)
             else:
@@ -40,8 +38,6 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     plaintext = ""
     for letter in ciphertext:
         if letter.isalpha():
-            # определяем, на сколько символов нужно сдвинуть букву
-            # и используем оператор % для того, чтобы вернуться к началу алфавита
             if letter.isupper():
                 new_letter = chr((ord(letter) - shift - 65) % 26 + 65)
             else:
