@@ -37,6 +37,14 @@ def gcd(a: int, b: int) -> int:
     pass
 
 
+def extended_euclidean_algorithm(e: int, phi: int) -> int:
+    if phi == 0:
+        return e, 1, 0
+    else:
+        gcd, x, y = extended_euclidean_algorithm(phi, e % phi)
+        return (gcd, y, x - (e // phi) * y)
+
+
 def multiplicative_inverse(e: int, phi: int) -> int:
     """
     Euclid's extended algorithm for finding the multiplicative
@@ -44,7 +52,11 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     >>> multiplicative_inverse(7, 40)
     23
     """
-    # PUT YOUR CODE HERE
+    d, x, y = extended_euclidean_algorithm(e, phi)
+    if d != 1:
+        raise ValueError("e не является взаимно простым с phi.")
+    else:
+        return x % phi
     pass
 
 
