@@ -14,7 +14,6 @@ def solve(math_str):
     if math_str[0] not in possible_num or math_str[-1] not in possible_num:
         print('Incorrect expression!')
         return
-
     num = []
     steps = []
     priority_steps = []
